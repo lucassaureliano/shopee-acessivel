@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Shopee Acessível
 // @namespace    http://tampermonkey.net/
-// @version      2024.0.1
+// @version      2024.1
 // @description  Torna os resultados da busca visíveis para o leitor de telas.
 // @author       Lucas Aureliano
 // @match        https://*.shopee.com.br/*
@@ -12,8 +12,25 @@
 (function() {
     'use strict';
 
-    var elements = document.querySelectorAll('.shopee-search-item-result__items li div div');
-    elements.forEach(function(element) {
-        element.setAttribute('aria-hidden', 'false');
+    function changeAriaHidden() {
+        var elements = document.querySelectorAll('.shopee-search-item-result__items li div div');
+        elements.forEach(function(element) {
+            element.setAttribute('aria-hidden', 'false');
+        });
+    }
+
+    window.addEventListener('load', function() {
+        changeAriaHidden();
+    });
+
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            changeAriaHidden();
+        });
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
     });
 })();
