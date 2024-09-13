@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Shopee Acessível
 // @namespace    http://tampermonkey.net/
-// @version      2024.2
+// @version      2024.3
 // @description  Torna os resultados da busca visíveis para o leitor de telas e adiciona atributos de acessibilidade.
 // @author       Lucas Aureliano
 // @match        https://*.shopee.com.br/*
@@ -13,6 +13,15 @@
     'use strict';
 
     function updateAccessibility() {
+        document.querySelectorAll('ul.row.shopee-search-item-result__items > li').forEach(e => {
+            e.querySelectorAll('[aria-hidden]').forEach(a => a.removeAttribute('aria-hidden'));
+            e.querySelectorAll('[aria-label]').forEach(a => a.removeAttribute('aria-label'));
+            e.querySelectorAll('img').forEach(img => img.setAttribute('alt', ''));
+            e.querySelectorAll('div.whitespace-normal').forEach(div => {
+                div.setAttribute('role', 'heading');
+                div.setAttribute('aria-level', '2');
+            });
+        });
         document.querySelectorAll('ul.row.shopee-search-item-result__items > li').forEach(e => {
             e.querySelectorAll('[aria-hidden]').forEach(a => a.removeAttribute('aria-hidden'));
             e.querySelectorAll('[aria-label]').forEach(a => a.removeAttribute('aria-label'));
