@@ -26,7 +26,7 @@
             e.querySelectorAll('[aria-hidden]').forEach(a => a.removeAttribute('aria-hidden'));
             e.querySelectorAll('[aria-label]').forEach(a => a.removeAttribute('aria-label'));
             e.querySelectorAll('img').forEach(img => img.setAttribute('alt', ''));
-            e.querySelectorAll('div.whitespace-normal').forEach(div => {
+            e.querySelectorAll('div.line-clamp-2').forEach(div => {
                 div.setAttribute('role', 'heading');
                 div.setAttribute('aria-level', '2');
             });
