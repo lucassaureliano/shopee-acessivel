@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Shopee Acessível
 // @namespace    http://tampermonkey.net/
-// @version      2024.3
+// @version      2025.8.6
 // @description  Torna os resultados da busca visíveis para o leitor de telas e adiciona atributos de acessibilidade.
 // @author       Lucas Aureliano
 // @match        https://*.shopee.com.br/*
@@ -17,18 +17,10 @@
             e.querySelectorAll('[aria-hidden]').forEach(a => a.removeAttribute('aria-hidden'));
             e.querySelectorAll('[aria-label]').forEach(a => a.removeAttribute('aria-label'));
             e.querySelectorAll('img').forEach(img => img.setAttribute('alt', ''));
-            e.querySelectorAll('div.whitespace-normal').forEach(div => {
+            e.querySelectorAll('div.whitespace-normal, div.line-clamp-2').forEach(div => {
                 div.setAttribute('role', 'heading');
                 div.setAttribute('aria-level', '2');
-            });
-        });
-        document.querySelectorAll('ul.row.shopee-search-item-result__items > li').forEach(e => {
-            e.querySelectorAll('[aria-hidden]').forEach(a => a.removeAttribute('aria-hidden'));
-            e.querySelectorAll('[aria-label]').forEach(a => a.removeAttribute('aria-label'));
-            e.querySelectorAll('img').forEach(img => img.setAttribute('alt', ''));
-            e.querySelectorAll('div.line-clamp-2').forEach(div => {
-                div.setAttribute('role', 'heading');
-                div.setAttribute('aria-level', '2');
+                div.setAttribute('tabindex', '0');
             });
         });
     }
@@ -48,3 +40,4 @@
         subtree: true
     });
 })();
+
