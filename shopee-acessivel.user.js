@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Shopee Acessível
 // @namespace    http://tampermonkey.net/
-// @version      2025.8.6d
+// @version      2025.8.7
 // @description  Torna os resultados da busca visíveis para o leitor de telas e adiciona atributos de acessibilidade.
 // @author       Lucas Aureliano
 // @match        https://*.shopee.com.br/*
@@ -37,9 +37,9 @@
                 div.setAttribute('aria-level', '3');
             });
         });
-        let shortHeading = document.querySelector('div.shopee-sort-bar__label');
-        shortHeading.setAttribute('role','heading');
-        shortHeading.setAttribute('aria-level','2');
+        let sortHeading = document.querySelector('.shopee-sort-bar__label');
+        sortHeading.setAttribute('role','heading');
+        sortHeading.setAttribute('aria-level','2');
         let allStoreProducts = document.querySelector('div.row');
         allStoreProducts.setAttribute('role','list');
         allStoreProducts.querySelectorAll('div.shop-search-result-view__item').forEach(storeProduct => {
