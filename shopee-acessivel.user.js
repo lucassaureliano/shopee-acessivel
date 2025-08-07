@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Shopee Acessível
 // @namespace    http://tampermonkey.net/
-// @version      2025.8.7
+// @version      2025.8.7b
 // @description  Torna os resultados da busca visíveis para o leitor de telas e adiciona atributos de acessibilidade.
 // @author       Lucas Aureliano
 // @match        https://*.shopee.com.br/*
@@ -65,3 +65,4 @@
         subtree: true
     });
 })();
+
